@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+     <meta charset="UTF-8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <title>Make Payment</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="{% static 'assets/style/css/bootstrap.min.css'%}"/>
+    </head>
+    <body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+     
+     <div class="card shadow-sm p-4  " style="width: 100%; max-width: 500px">
+         <h3 class="text-center mb-4">Make Payment</h3>
+         <form method="POST" class="needs-validation" novalidate>
+             {% csrf_token %}
+             <div class="mb-3">
+                 <label for="phone_number">Phone Number:</label>
+                 <input type="tel" id="phone_number" name="phone_number" class="form-control" placeholder="Enter your phone number" required>
+             </div>
+             <div class="mb-3">
+                 <label for="amount">Amount:</label>
+                 <input type="number" id="amount" name="amount" class="form-control" placeholder="Enter the amount" required>
+             </div>
+             <a href="{% url 'core:mpesaapi' %}" class="btn btn-success w-100 rounded-pill">
+                Pay
+            </a>
+           </form>
+           <div class="card shadow-sm p-4 mt-5" style="width: 100%; max-width: 500px">
+            <a href="{% url 'core:payment-failed' %}" class="btn btn-warning w-100 rounded-pill">
+                if failed
+            </a>
+           </div>
+           
+       </div>
+       
+       <!-- Bootstrap JS -->
+      <script src="{% static 'assets/style/js/bootstrap.min.js'%}"></script>
+    </body>
+</html>
